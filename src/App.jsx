@@ -23,13 +23,14 @@ const reducer = (state, action) => {
 
 // store - stores the data, think of state (of the app)
 const store = createStore(reducer, initialState);
+console.log(store.getState());
 
 function App() {
   // cart setup
 
   return (
     <main>
-      <Navbar />
+      <Navbar cartAmount={store.getState()} />
       <CartContainer cart={cartItems} />
     </main>
   );
