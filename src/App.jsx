@@ -7,22 +7,29 @@ import cartItems from './data';
 // redux stuff
 import { legacy_createStore as createStore } from 'redux';
 
+// dispatch method - send actions to the store
+// actions (objects) - MUST HAVE TYPE PROPERTY - what kind of action
+// DON'T MUTATE THE STATE - redux built on IMMUTABILITY (copy)
+
 const initialState = {
   count: 10,
 };
 
-// reducer - function to update the store/state
-// Two arguments - state, action
-// state - old state or state before update
-// action - what happened /what update needed for the state
-// return updated or old state
 const reducer = (state, action) => {
   console.log({ state, action });
+  if (action.type === 'DECREASE') {
+    return { ...state, count: state.count - 1 };
+  }
   return state;
 };
 
 // store - stores the data, think of state (of the app)
 const store = createStore(reducer, initialState);
+store.dispatch({ type: 'DECREASE' });
+store.dispatch({ type: 'DECREASE' });
+store.dispatch({ type: 'DECREASE' });
+store.dispatch({ type: 'DECREASE' });
+store.dispatch({ type: 'DECREASE' });
 console.log(store.getState());
 
 function App() {
