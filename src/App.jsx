@@ -7,13 +7,22 @@ import cartItems from './data';
 // redux stuff
 import { legacy_createStore as createStore } from 'redux';
 
+const initialState = {
+  count: 10,
+};
+
 // reducer - function to update the store/state
-const reducer = () => {
-  console.log('Hello world');
+// Two arguments - state, action
+// state - old state or state before update
+// action - what happened /what update needed for the state
+// return updated or old state
+const reducer = (state, action) => {
+  console.log({ state, action });
+  return state;
 };
 
 // store - stores the data, think of state (of the app)
-const store = createStore(reducer);
+const store = createStore(reducer, initialState);
 
 function App() {
   // cart setup
