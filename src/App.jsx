@@ -11,6 +11,8 @@ import { legacy_createStore as createStore } from 'redux';
 // actions (objects) - MUST HAVE TYPE PROPERTY - what kind of action
 // DON'T MUTATE THE STATE - redux built on IMMUTABILITY (copy)
 
+import { DECREASE, INCREASE } from './actions';
+
 const initialState = {
   count: 0,
   name: 'john',
@@ -18,29 +20,20 @@ const initialState = {
 
 const reducer = (state, action) => {
   console.log({ state, action });
-  if (action.type === 'DECREASE') {
+  if (action.type === DECREASE) {
     return { ...state, count: state.count - 1, name: 'anna' };
   }
-  if (action.type === 'INCREASE') {
+  if (action.type === INCREASE) {
     return { ...state, count: state.count + 1 };
-  }
-  if (action.type === 'RESET') {
-    return { ...state, count: 0 };
-  }
-  if (action.type === 'CHANGE_NAME') {
-    return { ...state, name: 'bob' };
   }
   return state;
 };
 
 // store - stores the data, think of state (of the app)
 const store = createStore(reducer, initialState);
-store.dispatch({ type: 'DECREASE' });
-store.dispatch({ type: 'CHANGE_NAME' });
-store.dispatch({ type: 'RESET' });
-store.dispatch({ type: 'INCREASE' });
-store.dispatch({ type: 'INCREASE' });
-store.dispatch({ type: 'RANDOM' });
+store.dispatch({ type: DECREASE });
+store.dispatch({ type: INCREASE });
+store.dispatch({ type: INCREASE });
 
 console.log(store.getState());
 
