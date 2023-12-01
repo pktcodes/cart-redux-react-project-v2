@@ -12,15 +12,19 @@ import { legacy_createStore as createStore } from 'redux';
 // DON'T MUTATE THE STATE - redux built on IMMUTABILITY (copy)
 
 const initialState = {
-  count: 10,
+  count: 0,
 };
 
 const reducer = (state, action) => {
   console.log({ state, action });
   if (action.type === 'DECREASE') {
-    // Mutating the state
-    // state.count = state.count - 1;
     return { ...state, count: state.count - 1 };
+  }
+  if (action.type === 'INCREASE') {
+    return { ...state, count: state.count + 1 };
+  }
+  if (action.type === 'RESET') {
+    return { ...state, count: 0 };
   }
   return state;
 };
@@ -28,11 +32,11 @@ const reducer = (state, action) => {
 // store - stores the data, think of state (of the app)
 const store = createStore(reducer, initialState);
 store.dispatch({ type: 'DECREASE' });
-store.dispatch({ type: 'DECREASE' });
-store.dispatch({ type: 'DECREASE' });
-store.dispatch({ type: 'DECREASE' });
-store.dispatch({ type: 'DECREASE' });
+store.dispatch({ type: 'RESET' });
 store.dispatch({ type: 'INCREASE' });
+store.dispatch({ type: 'INCREASE' });
+store.dispatch({ type: 'RANDOM' });
+
 console.log(store.getState());
 
 function App() {
