@@ -13,12 +13,13 @@ import { legacy_createStore as createStore } from 'redux';
 
 const initialState = {
   count: 0,
+  name: 'john',
 };
 
 const reducer = (state, action) => {
   console.log({ state, action });
   if (action.type === 'DECREASE') {
-    return { ...state, count: state.count - 1 };
+    return { ...state, count: state.count - 1, name: 'anna' };
   }
   if (action.type === 'INCREASE') {
     return { ...state, count: state.count + 1 };
@@ -26,12 +27,16 @@ const reducer = (state, action) => {
   if (action.type === 'RESET') {
     return { ...state, count: 0 };
   }
+  if (action.type === 'CHANGE_NAME') {
+    return { ...state, name: 'bob' };
+  }
   return state;
 };
 
 // store - stores the data, think of state (of the app)
 const store = createStore(reducer, initialState);
 store.dispatch({ type: 'DECREASE' });
+store.dispatch({ type: 'CHANGE_NAME' });
 store.dispatch({ type: 'RESET' });
 store.dispatch({ type: 'INCREASE' });
 store.dispatch({ type: 'INCREASE' });
