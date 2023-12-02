@@ -14,7 +14,7 @@ import { Provider } from 'react-redux';
 const initialState = {
   cart: cartItems,
   total: 0,
-  amount: 0,
+  amount: 5,
 };
 
 // store - stores the data, think of state (of the app) and provides methods to update store
