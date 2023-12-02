@@ -6,6 +6,11 @@ import cartItems from './data';
 import { legacy_createStore as createStore } from 'redux';
 import reducer from './reducer';
 
+// React-Redux
+// Provider: Wrap Application and pass store
+// connect: used in components to connect and access store
+import { Provider } from 'react-redux';
+
 const initialState = {
   cart: cartItems,
   total: 0,
@@ -19,10 +24,10 @@ function App() {
   // cart setup
 
   return (
-    <main>
+    <Provider store={store}>
       <Navbar />
       <CartContainer />
-    </main>
+    </Provider>
   );
 }
 
