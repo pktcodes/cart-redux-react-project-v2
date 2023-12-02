@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 
 const initialState = {
   cart: cartItems,
-  total: 0,
+  total: 105,
   amount: 5,
 };
 

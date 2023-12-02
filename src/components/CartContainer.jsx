@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import CartItem from './CartItem';
 
-const CartContainer = ({ cart = [] }) => {
+const CartContainer = ({ cart = [], total }) => {
   if (cart.length === 0) {
     return (
       <section className="cart">
@@ -30,7 +32,7 @@ const CartContainer = ({ cart = [] }) => {
         <hr />
         <div className="cart-total">
           <h4>
-            total <span>$0.00</span>
+            total <span>${total}</span>
           </h4>
         </div>
         <button className="btn clear-btn">clear cart</button>
@@ -41,6 +43,12 @@ const CartContainer = ({ cart = [] }) => {
 
 CartContainer.propTypes = {
   cart: PropTypes.array,
+  total: PropTypes.number,
 };
 
-export default CartContainer;
+const mapStateToProps = (store) => {
+  const { cart, total } = store;
+  return { cart, total };
+};
+
+export default connect(mapStateToProps)(CartContainer);
