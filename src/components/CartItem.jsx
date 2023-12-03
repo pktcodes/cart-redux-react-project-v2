@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { REMOVE } from '../actions';
+import { INCREASE, REMOVE } from '../actions';
 
-const CartItem = ({ img, title, price, amount, remove }) => {
+const CartItem = ({ img, title, price, amount, remove, increase }) => {
   return (
     <div className="cart-item">
       <img src={img} alt={title} />
@@ -11,13 +11,13 @@ const CartItem = ({ img, title, price, amount, remove }) => {
         <h4>{title}</h4>
         <h4 className="item-price">${price}</h4>
         {/* remove button */}
-        <button className="remove-btn" onClick={() => remove()}>
+        <button className="remove-btn" onClick={remove}>
           remove
         </button>
       </div>
       <div>
         {/* increase amount */}
-        <button className="amount-btn">
+        <button className="amount-btn" onClick={increase}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z" />
           </svg>
@@ -41,12 +41,14 @@ CartItem.propTypes = {
   price: PropTypes.number,
   amount: PropTypes.number,
   remove: PropTypes.func,
+  increase: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { id } = ownProps;
   return {
     remove: () => dispatch({ type: REMOVE, payload: { id } }),
+    increase: () => dispatch({ type: INCREASE, payload: { id } }),
   };
 };
 
