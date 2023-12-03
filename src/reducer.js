@@ -24,6 +24,26 @@ const reducer = (state, action) => {
       cart: tempCart,
     };
   }
+  if (action.type === DECREASE) {
+    let tempCart = [];
+    if (action.payload.amount === 1) {
+      console.log("it's 1, delete");
+      tempCart = state.cart.filter((cartItem) => {
+        return cartItem.id !== action.payload.id;
+      });
+    } else {
+      tempCart = state.cart.map((cartItem) => {
+        if (cartItem.id === action.payload.id) {
+          cartItem = { ...cartItem, amount: cartItem.amount - 1 };
+        }
+        return cartItem;
+      });
+    }
+    return {
+      ...state,
+      cart: tempCart,
+    };
+  }
   return state;
 };
 
