@@ -1,10 +1,16 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 
+import { CLEAR_CART, GET_TOTALS } from '../actions';
 import CartItem from './CartItem';
-import { CLEAR_CART } from '../actions';
 
 const CartContainer = ({ cart = [], total, dispatch }) => {
+  useEffect(() => {
+    dispatch({ type: GET_TOTALS });
+  }, [cart, dispatch]);
+
   if (cart.length === 0) {
     return (
       <section className="cart">
