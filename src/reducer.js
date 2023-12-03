@@ -1,6 +1,9 @@
-import { DECREASE, INCREASE } from './actions';
+import { DECREASE, INCREASE, CLEAR_CART } from './actions';
 
 const reducer = (state, action) => {
+  if (action.type === CLEAR_CART) {
+    return { ...state, cart: [] };
+  }
   return state;
 };
 

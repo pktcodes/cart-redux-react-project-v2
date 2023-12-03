@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import CartItem from './CartItem';
+import { CLEAR_CART } from '../actions';
 
-const CartContainer = ({ cart = [], total }) => {
+const CartContainer = ({ cart = [], total, dispatch }) => {
   if (cart.length === 0) {
     return (
       <section className="cart">
@@ -35,7 +36,12 @@ const CartContainer = ({ cart = [], total }) => {
             total <span>${total}</span>
           </h4>
         </div>
-        <button className="btn clear-btn">clear cart</button>
+        <button
+          className="btn clear-btn"
+          onClick={() => dispatch({ type: CLEAR_CART })}
+        >
+          clear cart
+        </button>
       </footer>
     </section>
   );
@@ -44,6 +50,7 @@ const CartContainer = ({ cart = [], total }) => {
 CartContainer.propTypes = {
   cart: PropTypes.array,
   total: PropTypes.number,
+  dispatch: PropTypes.func,
 };
 
 const mapStateToProps = (store) => {
