@@ -8,3 +8,13 @@ const reducer = (state, action) => {
 };
 
 export default reducer;
+
+// Alternative Setup using switch statement
+/* 
+  switch (action.type) {
+    case CLEAR_CART:
+      return { ...state, cart: [] };
+    default:
+      return state;
+  } 
+ */
