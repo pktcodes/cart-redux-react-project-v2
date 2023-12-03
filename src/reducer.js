@@ -1,4 +1,11 @@
-import { DECREASE, INCREASE, CLEAR_CART, REMOVE, GET_TOTALS } from './actions';
+import {
+  DECREASE,
+  INCREASE,
+  CLEAR_CART,
+  REMOVE,
+  GET_TOTALS,
+  TOGGLE_AMOUNT,
+} from './actions';
 
 const reducer = (state, action) => {
   if (action.type === CLEAR_CART) {
@@ -54,6 +61,22 @@ const reducer = (state, action) => {
       }
     );
     return { ...state, total: parseFloat(total.toFixed(2)), amount };
+  }
+  if (action.type === TOGGLE_AMOUNT) {
+    return {
+      ...state,
+      cart: state.cart.map((cartItem) => {
+        if (cartItem.id === action.payload.id) {
+          if (action.payload.type === 'increase') {
+            return (cartItem = { ...cartItem, amount: cartItem.amount + 1 });
+          }
+          if (action.payload.type === 'decrease') {
+            return (cartItem = { ...cartItem, amount: cartItem.amount - 1 });
+          }
+        }
+        return cartItem;
+      }),
+    };
   }
   return state;
 };
