@@ -1,6 +1,5 @@
 import Navbar from './components/Navbar';
 import CartContainer from './components/CartContainer';
-import cartItems from './data';
 
 // Redux
 import { legacy_createStore as createStore } from 'redux';
@@ -11,14 +10,8 @@ import reducer from './reducer';
 // connect: used in components to connect and access store
 import { Provider } from 'react-redux';
 
-const initialState = {
-  cart: cartItems,
-  total: 105,
-  amount: 5,
-};
-
 // store - stores the data, think of state (of the app) and provides methods to update store
-const store = createStore(reducer, initialState);
+const store = createStore(reducer);
 
 function App() {
   // cart setup

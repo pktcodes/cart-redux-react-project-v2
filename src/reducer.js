@@ -1,3 +1,5 @@
+import cartItems from './data';
+
 import {
   DECREASE,
   INCREASE,
@@ -7,7 +9,13 @@ import {
   TOGGLE_AMOUNT,
 } from './actions';
 
-const reducer = (state, action) => {
+const initialStore = {
+  cart: cartItems,
+  total: 105,
+  amount: 5,
+};
+
+const reducer = (state = initialStore, action) => {
   if (action.type === CLEAR_CART) {
     return { ...state, cart: [] };
   }
