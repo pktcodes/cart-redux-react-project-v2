@@ -1,8 +1,16 @@
-import { DECREASE, INCREASE, CLEAR_CART } from './actions';
+import { DECREASE, INCREASE, CLEAR_CART, REMOVE } from './actions';
 
 const reducer = (state, action) => {
   if (action.type === CLEAR_CART) {
     return { ...state, cart: [] };
+  }
+  if (action.type === REMOVE) {
+    return {
+      ...state,
+      cart: state.cart.filter((cartItem) => {
+        return cartItem.id !== action.payload.id;
+      }),
+    };
   }
   return state;
 };

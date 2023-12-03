@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const CartItem = ({ img, title, price, amount }) => {
+import { REMOVE } from '../actions';
+
+const CartItem = ({ img, title, price, amount, remove }) => {
   return (
     <div className="cart-item">
       <img src={img} alt={title} />
@@ -8,7 +11,9 @@ const CartItem = ({ img, title, price, amount }) => {
         <h4>{title}</h4>
         <h4 className="item-price">${price}</h4>
         {/* remove button */}
-        <button className="remove-btn">remove</button>
+        <button className="remove-btn" onClick={() => remove()}>
+          remove
+        </button>
       </div>
       <div>
         {/* increase amount */}
@@ -35,6 +40,14 @@ CartItem.propTypes = {
   title: PropTypes.string,
   price: PropTypes.number,
   amount: PropTypes.number,
+  remove: PropTypes.func,
 };
 
-export default CartItem;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { id } = ownProps;
+  return {
+    remove: () => dispatch({ type: REMOVE, payload: { id } }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CartItem);
