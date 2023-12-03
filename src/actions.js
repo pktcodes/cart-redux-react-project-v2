@@ -5,4 +5,16 @@ const REMOVE = 'REMOVE';
 const GET_TOTALS = 'GET_TOTALS';
 const TOGGLE_AMOUNT = 'TOGGLE_AMOUNT';
 
-export { DECREASE, INCREASE, CLEAR_CART, REMOVE, GET_TOTALS, TOGGLE_AMOUNT };
+const removeItem = (id) => {
+  return { type: REMOVE, payload: { id } };
+};
+
+export {
+  DECREASE,
+  INCREASE,
+  CLEAR_CART,
+  REMOVE,
+  GET_TOTALS,
+  TOGGLE_AMOUNT,
+  removeItem,
+};
